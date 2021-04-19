@@ -16,26 +16,29 @@ const Overview = (props) => {
   const userID = props.user.id
 
   useEffect(() => {
-      entityRef.where("userID", "==", userID).onSnapshot(query => {
+      entityRef.onSnapshot(query => {
                 let parks = [];
                 query.forEach(park => {
+                  
                     let data = park.data();
-                    parks.push({
-                      id: park.id, 
-                      src: data.src,
-                      name: data.name,
-                      description: data.description,
-                      loacation: data.loacation,
-                    })
+                    if (data.name.indexOf(props.find) > 0 || props.find=="") {
+                      console.log(data.name.indexOf(props.find));
+                      parks.push({
+                        id: park.id, 
+                        src: data.src,
+                        name: data.name,
+                        description: data.description,
+                        location: data.location,
+                      })
+                  } 
                 });
                 setParksData(parks);
-                console.log(parks);
             },
             error => {
                 console.log(error)
             }
         )
-  }, [])
+  }, [props.find])
 
   let addPark = () => {
     let data = {
@@ -43,7 +46,8 @@ const Overview = (props) => {
       src: "https://cf.bstatic.com/data/xphoto/1182x887/324/32450911.jpg?size=S",
       userID,
       description: "This is very big park. It's amupark!!!",
-      loacation: "Minsk, Belarus",
+      location: "Minsk, Belarus",
+      geo: {latitude: 25, longitude: 50}
     }
     entityRef.add(data).catch((error) => {
         alert(error)
@@ -58,12 +62,12 @@ const Overview = (props) => {
                 <View style={styles.itemContainer}>
                   <Image style={styles.imageThumbnail} source={{ uri: item.src }} />
                   <Text style={styles.textName}>{item.name}</Text>
-                  <Text style={styles.textLocation}>{item.loacation}</Text>
+                  <Text style={styles.textLocation}>{item.location}</Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
           )} numColumns={3} keyExtractor={(item, index) => index} />
-          <Button title="add" onPress={addPark}/>
+          {/* <Button title="add" onPress={addPark}/> */}
       </SafeAreaView>
   );
 };

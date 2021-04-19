@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { firebase } from '../firebase/config';
 import { StyleSheet, TextInput, Button, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import i18n from '../i18n'
 
 let Register = (props) => {
 
@@ -34,7 +35,7 @@ let Register = (props) => {
           .then(() => {
             props.setIsLogin(true);
             props.setUser(data);
-            navigation.navigate('OverviewNavigator');;
+            navigation.navigate('Overview');;
           })
           .catch((error) => {
             alert(error);
@@ -47,13 +48,13 @@ let Register = (props) => {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.text} placeholder="Login" value={login} onChangeText = {setLogin} />
+      <TextInput style={styles.text} placeholder={i18n.t('login')} value={login} onChangeText = {setLogin} />
       <TextInput secureTextEntry={true} style={styles.text} 
-                                  placeholder="Password" value={password} onChangeText = {setPassword} />
+                                  placeholder={i18n.t('pass')} value={password} onChangeText = {setPassword} />
       <TextInput style={styles.text} placeholder="Email" value={email} onChangeText = {setEmail} />
-      <TextInput style={styles.text} placeholder="Phone" value={phone} onChangeText = {setPhone} />
-      <TextInput style={styles.text} placeholder="Age"   value={age} onChangeText = {setAge} />
-      <Button title="Register" color="#333333" onPress={onRegisterPress}/>
+      <TextInput style={styles.text} placeholder={i18n.t('phone')} value={phone} onChangeText = {setPhone} />
+      <TextInput style={styles.text} placeholder={i18n.t('age')}   value={age} onChangeText = {setAge} />
+      <Button title={i18n.t('reg')} color="#333333" onPress={onRegisterPress}/>
 
     </View>
   );

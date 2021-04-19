@@ -2,7 +2,6 @@ import React, { useState, useEffect, Component } from 'react';
 import { firebase } from '../firebase/config';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Markers from './Markers';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 
 class Map extends Component {
@@ -21,8 +20,8 @@ class Map extends Component {
   
     componentDidMount() {
         const entityRef = firebase.firestore().collection('parks')
-        const userID = this.state.props.user.id;
-        entityRef.where("userID", "==", userID).onSnapshot(query => {
+
+        entityRef.onSnapshot(query => {
                   let parks = [];
                   query.forEach(park => {
                       let data = park.data();
@@ -32,7 +31,7 @@ class Map extends Component {
                         name: data.name,
                         geo: data.geo,
                         description: data.description,
-                        loacation: data.loacation,
+                        location: data.location,
                       })
                   });
                   this.setState({parksData: parks})

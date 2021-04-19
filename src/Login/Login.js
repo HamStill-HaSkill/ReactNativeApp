@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { firebase } from '../firebase/config';
 import { StyleSheet, TextInput, Button, View, Text } from 'react-native';
+import i18n from '../i18n'
 import { useNavigation } from '@react-navigation/native';
 
 let Login = (props) => {
@@ -29,7 +30,7 @@ let Login = (props) => {
             const user = firestoreDocument.data();
             props.setUser(user);
             props.setIsLogin(true);
-            navigation.navigate('OverviewNavigator');
+            navigation.navigate('Overview');
           })
           .catch(error => {
             alert(error);
@@ -44,8 +45,8 @@ let Login = (props) => {
     <View style={styles.container}>
       <TextInput style={styles.text} placeholder="Email" value={email} onChangeText = {setEmail} />
       <TextInput secureTextEntry={true} style={styles.text} 
-                            placeholder="Password" value={password} onChangeText = {setPassword} />
-      <Button title="Login" color="#333333" onPress={onLoginPress} />
+                            placeholder={i18n.t('pass')} value={password} onChangeText = {setPassword} />
+      <Button title={i18n.t('log')} color="#333333" onPress={onLoginPress} />
     </View>
   );
 }

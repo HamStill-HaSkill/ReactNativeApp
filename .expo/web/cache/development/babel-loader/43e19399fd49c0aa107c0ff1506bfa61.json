@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default {\n  all_parks: 'All parks'\n};","map":{"version":3,"sources":["D:/Progi/amupark/amupark/src/i18n/en.js"],"names":["all_parks"],"mappings":"AAAA,eAAe;AACXA,EAAAA,SAAS,EAAE;AADA,CAAf","sourcesContent":["export default {\r\n    all_parks: 'All parks',\r\n}"]},"metadata":{},"sourceType":"module"}

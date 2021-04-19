@@ -1,10 +1,10 @@
 {
   "webpackServerPort": null,
   "expoServerPort": null,
-  "packagerPort": null,
+  "packagerPort": 19000,
   "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerNgrokUrl": "https://xp-ipw.haskill.amupark.exp.direct",
+  "packagerNgrokUrl": "https://packager.xp-ipw.haskill.amupark.exp.direct",
+  "ngrokPid": 6320,
   "devToolsPort": 19002
 }
